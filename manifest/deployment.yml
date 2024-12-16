@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: api-gpt-be
-        image: hernancr/msvg-be:latest  # Reemplaza con tu imagen Docker del backend
+        image: dannalopez/as222s5_t09_be:latest  # Reemplaza con tu imagen Docker del backend
         env:
         - name: DATABASE_URL
           valueFrom:
@@ -32,7 +32,11 @@ spec:
             secretKeyRef:
               name: database-credentials
               key: DATABASE_PASSWORD
-
+        - name: RAPIDAPI_KEY
+          valueFrom:
+            secretKeyRef:
+              name: database-credentials
+              key: RAPIDAPI_KEY
 
 ---
 
@@ -53,7 +57,7 @@ spec:
     spec:
       containers:
       - name: api-gpt-frontend
-        image: hernancr/msvg-fe:latest  # Reemplaza con tu imagen Docker del frontend
+        image: dannalopez/apigptfrontend:latest  # Reemplaza con tu imagen Docker del frontend
         env:
         - name: API_BACKEND
           valueFrom:
@@ -75,3 +79,8 @@ spec:
             secretKeyRef:
               name: database-credentials
               key: DATABASE_PASSWORD
+        - name: RAPIDAPI_KEY
+          valueFrom:
+            secretKeyRef:
+              name: database-credentials
+              key: RAPIDAPI_KEY
